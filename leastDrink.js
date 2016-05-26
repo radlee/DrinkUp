@@ -1,32 +1,45 @@
 module.exports = function(day, drink){
-
-  var least = 100;
-  if(drink === "coffee"){
-    var person = "l";
-    day.forEach(function(person){
-      if(person.coffee < least){
-        least = person.coffee;
-        person = "Lesego";
+  var listOfPersonObjects = [];
+  day.map(function(person){
+    if(drink === "coffee"){
+      var result = {
+        personName : person.person,
+        hisDrink : person.coffee
       }
-    });
-  }
-  if(drink === "tea"){
-    day.forEach(function(person){
-      if(person.tea < least){
-        least = person.tea;
-        person = person.person;
+      listOfPersonObjects.push(result);
+      var sortTheArray = function(list){
+        list.sort(function(obj1, obj2){
+          return obj1.hisDrink - obj2.hisDrink;
+        })
       }
-    });
-  }
-  if(drink === "water"){
-    day.forEach(function(person){
-      least = person.water;
-      if(person.water < least){
-        person = person.person;
+      sortTheArray(listOfPersonObjects);
+    }
+    else if(drink == "water"){
+      var result = {
+        personName : person.person,
+        hisDrink : person.water
       }
-    });
-  }
-
-  return person;
-
+      listOfPersonObjects.push(result);
+      var sortTheArray = function(list){
+        list.sort(function(obj1, obj2){
+          return obj1.hisDrink - obj2.hisDrink;
+        })
+      }
+      sortTheArray(listOfPersonObjects);
+    }
+    else if(drink == "tea"){
+      var result = {
+        personName : person.person,
+        hisDrink : person.tea
+      }
+      listOfPersonObjects.push(result);
+      var sortTheArray = function(list){
+        list.sort(function(obj1, obj2){
+          return obj1.hisDrink - obj2.hisDrink;
+        })
+      }
+      sortTheArray(listOfPersonObjects);
+    }
+  });
+  return listOfPersonObjects[0].personName;
 }
